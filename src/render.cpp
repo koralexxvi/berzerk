@@ -11,10 +11,14 @@
 namespace {
 
 SDL_FRect getWallRectAt(std::size_t x, std::size_t y) {
-	constexpr float offsetX =
-		(RENDER_WIDTH - (BERZERK_MAP_X * BERZERK_WALL_LENGTH_X) + BERZERK_WALL_LENGTH_X) * 0.5f;
-	constexpr float offsetY =
-		(RENDER_HEIGHT - (BERZERK_MAP_Y * BERZERK_WALL_LENGTH_Y) + BERZERK_WALL_LENGTH_Y) * 0.5f;
+	// clang-format off
+	constexpr float offsetX = (RENDER_WIDTH - (BERZERK_MAP_X * BERZERK_WALL_LENGTH_X)
+		+ (BERZERK_WALL_LENGTH_X - BERZERK_WALL_THICKNESS))
+		* 0.5f;
+	constexpr float offsetY = (RENDER_HEIGHT - (BERZERK_MAP_Y * BERZERK_WALL_LENGTH_Y)
+		+ (BERZERK_WALL_LENGTH_Y - BERZERK_WALL_THICKNESS))
+		* 0.5f;
+	// clang-format on
 
 	Berzerk::Direction direction = Berzerk::map[y][x];
 	float rx = (static_cast<float>(x) * BERZERK_WALL_LENGTH_X);
