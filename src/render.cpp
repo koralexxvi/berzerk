@@ -12,19 +12,19 @@ namespace {
 
 SDL_FRect getWallRectAt(std::size_t x, std::size_t y) {
 	constexpr float offsetX =
-		(RENDER_WIDTH - (BERZERK_MAP_X * BERZERK_WALL_LENGTH) + BERZERK_WALL_LENGTH) * 0.5f;
+		(RENDER_WIDTH - (BERZERK_MAP_X * BERZERK_WALL_LENGTH_X) + BERZERK_WALL_LENGTH_X) * 0.5f;
 	constexpr float offsetY =
-		(RENDER_HEIGHT - (BERZERK_MAP_Y * BERZERK_WALL_LENGTH) + BERZERK_WALL_LENGTH) * 0.5f;
+		(RENDER_HEIGHT - (BERZERK_MAP_Y * BERZERK_WALL_LENGTH_Y) + BERZERK_WALL_LENGTH_Y) * 0.5f;
 
 	Berzerk::Direction direction = Berzerk::map[y][x];
-	float rx = (static_cast<float>(x) * BERZERK_WALL_LENGTH);
-	float ry = (static_cast<float>(y) * BERZERK_WALL_LENGTH);
+	float rx = (static_cast<float>(x) * BERZERK_WALL_LENGTH_X);
+	float ry = (static_cast<float>(y) * BERZERK_WALL_LENGTH_Y);
 	float rw, rh;
 	if (direction == Berzerk::Direction::NORTH || direction == Berzerk::Direction::SOUTH) {
 		rw = BERZERK_WALL_THICKNESS;
-		rh = BERZERK_WALL_LENGTH;
+		rh = BERZERK_WALL_LENGTH_Y;
 	} else {
-		rw = BERZERK_WALL_LENGTH;
+		rw = BERZERK_WALL_LENGTH_X;
 		rh = BERZERK_WALL_THICKNESS;
 	}
 	if (direction == Berzerk::Direction::NORTH) {
