@@ -1,0 +1,26 @@
+CompileFlags:
+    Add:
+        [
+            -Wall,
+            -Wextra,
+            -Wpedantic,
+            -Wdeprecated,
+            -Wconversion,
+            -Wimplicit-fallthrough,
+            -Wmissing-prototypes,
+            -Wmissing-variable-declarations,
+            -Wredundant-parens,
+            -Wswitch-default,
+            -Wunaligned-access,
+            -Wunreachable-code-aggressive,
+        ]
+---
+If:
+    PathMatch: .*\.cpp
+CompileFlags:
+    Add: [-xc++]
+---
+If:
+    PathMatch: .*\.hpp
+CompileFlags:
+    Add: [-xc++-header]

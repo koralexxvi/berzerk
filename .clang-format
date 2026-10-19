@@ -1,0 +1,65 @@
+Language: Cpp
+Standard: c++20
+ColumnLimit: 100
+LineEnding: LF
+UseTab: Always
+
+AllowAllArgumentsOnNextLine: false
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortBlocksOnASingleLine: Empty
+AllowShortCaseLabelsOnASingleLine: true
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLambdasOnASingleLine: None
+AllowShortLoopsOnASingleLine: false
+
+AlignAfterOpenBracket: BlockIndent
+AlignConsecutiveAssignments: None
+AlignEscapedNewlines: Left
+AlignOperands: AlignAfterOperator
+AlignTrailingComments: Always
+BinPackArguments: false
+BinPackParameters: false
+BreakAfterAttributes: Always
+BreakBeforeBraces: Custom
+BreakBeforeBinaryOperators: NonAssignment
+BreakBeforeTernaryOperators: true
+EmptyLineBeforeAccessModifier: Always
+IncludeBlocks: Regroup
+PackConstructorInitializers: CurrentLine
+PointerAlignment: Left
+QualifierAlignment: Custom
+
+AccessModifierOffset: -2
+ContinuationIndentWidth: 4
+IndentCaseLabels: true
+IndentPPDirectives: BeforeHash
+IndentWidth: 4
+PPIndentWidth: 4
+SpaceAfterTemplateKeyword: false
+TabWidth: 4
+
+InsertBraces: true
+InsertNewlineAtEOF: true
+InsertTrailingCommas: None
+RemoveParentheses: ReturnStatement
+RemoveSemicolon: true
+SeparateDefinitionBlocks: Leave
+SpaceAfterCStyleCast: true
+SpaceBeforeCtorInitializerColon: true
+SpacesBeforeTrailingComments: 2
+SpacesInContainerLiterals: true
+
+PenaltyReturnTypeOnItsOwnLine: 1000000
+
+IntegerLiteralSeparator:
+    Binary: 0
+    Decimal: 3
+    DecimalMinDigits: 5
+    Hex: -1
+
+QualifierOrder: [static, inline, constexpr, const, volatile, restrict, type]
+
+BraceWrapping:
+    AfterControlStatement: MultiLine
