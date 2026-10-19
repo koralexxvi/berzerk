@@ -8,7 +8,7 @@
 #include <SDL3/SDL_main.h>
 // clang-format on
 
-#include <berzerk/globals.hpp>
+#include "berzerk/globals.hpp"
 
 #define RENDER_WIDTH (400)
 #define RENDER_HEIGHT (300)
