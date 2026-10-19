@@ -2,6 +2,7 @@
 
 #include "berzerk/defs.hpp"
 #include "berzerk/globals.hpp"
+#include "berzerk/map.hpp"
 
 #include <SDL3/SDL_rect.h>
 #include <SDL3/SDL_render.h>
