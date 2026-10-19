@@ -1,3 +1,4 @@
+#include "berzerk/defs.hpp"
 #include <SDL3/SDL_error.h>
 #include <SDL3/SDL_init.h>
 #include <SDL3/SDL_log.h>
@@ -16,6 +17,7 @@
 
 SDL_Renderer* Berzerk::renderer = nullptr;
 SDL_Window* Berzerk::window = nullptr;
+std::array<std::array<Berzerk::Direction, BERZERK_MAP_Y>, BERZERK_MAP_X> Berzerk::map = {};
 
 SDL_AppResult SDL_AppInit(void**, int, char*[]) {
 	if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS)) {
