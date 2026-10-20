@@ -4,6 +4,7 @@
 
 #define BERZERK_PLAYER_W (8)
 #define BERZERK_PLAYER_H (16)
+#define BERZERK_PLAYER_SHOOT_DELAY (15)
 
 namespace Berzerk {
 

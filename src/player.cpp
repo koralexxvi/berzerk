@@ -64,7 +64,7 @@ void Berzerk::Player::tick() {
 			case 0b10101: shootOffset = {2, 4}; break;
 			default: throw std::invalid_argument("invalid input (unreachable\?\?)");
 		}
-		moveTimer = 10;
+		moveTimer = BERZERK_PLAYER_SHOOT_DELAY;
 		bullets.push_back(Bullet(
 			pos + shootOffset,
 			dir,
