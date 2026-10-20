@@ -34,11 +34,11 @@ void Berzerk::Player::tick() {
 		Point shootOffset;
 		std::uint8_t shootInput = input;
 		// up+down?
-		if (shootInput & 0b00011) {
+		if ((shootInput & 0b00011) == 0b00011) {
 			shootInput ^= 0b00011;
 		}
 		// left+right?
-		if (shootInput & 0b01100) {
+		if ((shootInput & 0b01100) == 0b01100) {
 			shootInput ^= 0b01100;
 		}
 		// no inputs left?
