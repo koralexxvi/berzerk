@@ -17,6 +17,7 @@ void setCameraPos(const Point& pos);
 // Recenters the position of the camera.
 void recenterCamera();
 
+// Draws the map to the screen.
 void drawWalls();
 
 }  // namespace Berzerk
