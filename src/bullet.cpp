@@ -5,7 +5,9 @@
 #include "berzerk/point.hpp"
 #include "berzerk/render.hpp"
 
+#include <SDL3/SDL_rect.h>
 #include <SDL3/SDL_render.h>
+#include <vector>
 
 Berzerk::Bullet::Bullet(
 	const Point& pos,
@@ -32,12 +34,12 @@ void Berzerk::Bullet::tick() {
 
 void Berzerk::Bullet::draw() const {
 	Point drawPos = pos + getCameraPos();
+	std::vector<SDL_FPoint> points;
+	points.reserve(length);
+	for (std::uint8_t i = 0; i < length; i++) {
+		Point p = drawPos + dir * i;
+		points.push_back({static_cast<float>(p.x), static_cast<float>(p.y)});
+	}
 	SDL_SetRenderDrawColor(renderer, colour.r, colour.g, colour.b, colour.a);
-	SDL_RenderLine(
-		renderer,
-		static_cast<float>(drawPos.x),
-		static_cast<float>(drawPos.y),
-		static_cast<float>(drawPos.x + dir.x * length),
-		static_cast<float>(drawPos.y + dir.y * length)
-	);
+	SDL_RenderPoints(renderer, points.data(), length);
 }
