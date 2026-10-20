@@ -2,8 +2,8 @@
 
 #include "berzerk/point.hpp"
 
-#define RENDER_WIDTH (400)
-#define RENDER_HEIGHT (300)
+#define RENDER_WIDTH (256)
+#define RENDER_HEIGHT (224)
 #define RENDER_SCALE (2)
 
 namespace Berzerk {

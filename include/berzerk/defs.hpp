@@ -4,7 +4,7 @@
 #define BERZERK_MAP_Y (4)
 #define BERZERK_WALL_LENGTH_X (48)
 #define BERZERK_WALL_LENGTH_Y (64)
-#define BERZERK_WALL_THICKNESS (2)
+#define BERZERK_WALL_THICKNESS (4)
 
 namespace Berzerk {
 

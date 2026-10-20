@@ -48,9 +48,7 @@ void Berzerk::recenterCamera() {
 	constexpr std::size_t offsetX = (RENDER_WIDTH - (BERZERK_MAP_X * BERZERK_WALL_LENGTH_X)
 		+ (BERZERK_WALL_LENGTH_X - BERZERK_WALL_THICKNESS))
 		/ 2;
-	constexpr std::size_t offsetY = (RENDER_HEIGHT - (BERZERK_MAP_Y * BERZERK_WALL_LENGTH_Y)
-		+ (BERZERK_WALL_LENGTH_Y - BERZERK_WALL_THICKNESS))
-		/ 2;
+	constexpr std::size_t offsetY = 0;
 	// clang-format on
 	cameraPos = {offsetX, offsetY};
 }
