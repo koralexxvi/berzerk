@@ -70,4 +70,7 @@ void Berzerk::drawObjects() {
 	for (const auto& v : players) {
 		v.draw();
 	}
+	for (const auto& v : bullets) {
+		v.draw();
+	}
 }
