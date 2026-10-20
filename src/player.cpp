@@ -7,7 +7,9 @@
 
 Berzerk::Player::Player(const Point& pos) : pos(pos) {}
 
-void Berzerk::Player::tick() {}
+void Berzerk::Player::tick() {
+	pos += vel;
+}
 
 void Berzerk::Player::draw() const {
 	SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
