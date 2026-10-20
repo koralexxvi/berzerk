@@ -2,6 +2,7 @@
 
 #include "berzerk/point.hpp"
 
+#include <algorithm>
 #include <cstdint>
 
 namespace Berzerk {
@@ -36,6 +37,15 @@ constexpr bool rectIntersectsPoint(const Rect& rect, const Point& point) noexcep
 constexpr bool rectIntersectsRect(const Rect& a, const Rect& b) noexcept {
 	return (valueInRange(a.x, b.x, b.x + b.w) || valueInRange(b.x, a.x, a.x + a.w))
 		&& (valueInRange(a.y, b.y, b.y + b.h) || valueInRange(b.y, a.y, a.y + a.h));
+}
+
+// Returns the bounding box of a line.
+constexpr Rect getLineBoundingBox(Point a, Point b) {
+	std::int32_t minX = std::min(a.x, b.x);
+	std::int32_t minY = std::min(a.y, b.y);
+	std::int32_t maxX = std::max(a.x, b.x);
+	std::int32_t maxY = std::max(a.y, b.y);
+	return {minX, minY, maxX - minX, maxY - minY};
 }
 
 }  // namespace Berzerk
