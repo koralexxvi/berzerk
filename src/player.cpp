@@ -4,6 +4,7 @@
 #include "berzerk/game.hpp"
 #include "berzerk/globals.hpp"
 #include "berzerk/point.hpp"
+#include "berzerk/render.hpp"
 
 #include <SDL3/SDL_log.h>
 #include <SDL3/SDL_render.h>
@@ -80,10 +81,11 @@ void Berzerk::Player::tick() {
 }
 
 void Berzerk::Player::draw() const {
+	Point drawPos = pos + getCameraPos();
 	SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
 	SDL_FRect drawRect = {
-		static_cast<float>(pos.x),
-		static_cast<float>(pos.y),
+		static_cast<float>(drawPos.x),
+		static_cast<float>(drawPos.y),
 		static_cast<float>(size.x),
 		static_cast<float>(size.y)
 	};
