@@ -1,5 +1,6 @@
 #pragma once
 
+#define BERZERK_FRAMERATE (60)
 #define BERZERK_MAP_X (6)
 #define BERZERK_MAP_Y (4)
 #define BERZERK_WALL_LENGTH_X (48)

@@ -1,3 +1,5 @@
+#include "berzerk/defs.hpp"
+#include "berzerk/game.hpp"
 #include "berzerk/globals.hpp"
 #include "berzerk/map.hpp"
 #include "berzerk/render.hpp"
@@ -6,6 +8,8 @@
 #include <SDL3/SDL_init.h>
 #include <SDL3/SDL_log.h>
 #include <SDL3/SDL_render.h>
+#include <SDL3/SDL_timer.h>
+#include <cstdint>
 
 // clang-format off
 #define SDL_MAIN_USE_CALLBACKS (1)
@@ -14,6 +18,12 @@
 
 SDL_Renderer* Berzerk::renderer = nullptr;
 SDL_Window* Berzerk::window = nullptr;
+
+namespace {
+
+std::uint64_t lastFrame = 0;
+
+}
 
 SDL_AppResult SDL_AppInit(void**, int, char*[]) {
 	if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS)) {
@@ -58,6 +68,13 @@ SDL_AppResult SDL_AppEvent(void*, SDL_Event* event) {
 }
 
 SDL_AppResult SDL_AppIterate(void*) {
+	constexpr std::size_t frameInterval = 1'000'000'000 / BERZERK_FRAMERATE;
+	std::uint64_t now = SDL_GetTicksNS();
+	if (now - lastFrame >= frameInterval) {
+		Berzerk::tick();
+		lastFrame = now;
+	}
+
 	SDL_SetRenderDrawColor(Berzerk::renderer, 0, 0, 0, 255);
 	SDL_RenderClear(Berzerk::renderer);
 	Berzerk::drawWalls();
