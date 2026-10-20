@@ -2,6 +2,7 @@
 #include "berzerk/game.hpp"
 #include "berzerk/globals.hpp"
 #include "berzerk/map.hpp"
+#include "berzerk/player.hpp"
 #include "berzerk/render.hpp"
 
 #include <SDL3/SDL_error.h>
@@ -64,6 +65,26 @@ SDL_AppResult SDL_AppInit(void**, int, char*[]) {
 SDL_AppResult SDL_AppEvent(void*, SDL_Event* event) {
 	if (event->type == SDL_EVENT_QUIT) {
 		return SDL_APP_SUCCESS;
+	}
+	if (event->type == SDL_EVENT_KEY_DOWN || event->type == SDL_EVENT_KEY_UP) {
+		if (Berzerk::players.size() < 1) {
+			return SDL_APP_CONTINUE;
+		}
+		Berzerk::Player& player = Berzerk::players[0];
+		std::uint8_t input;
+		switch (event->key.scancode) {
+			case SDL_SCANCODE_W: input = 0b00001; break;
+			case SDL_SCANCODE_S: input = 0b00010; break;
+			case SDL_SCANCODE_A: input = 0b00100; break;
+			case SDL_SCANCODE_D: input = 0b01000; break;
+			case SDL_SCANCODE_SPACE: input = 0b10000; break;
+			default: return SDL_APP_CONTINUE;
+		}
+		if (event->key.down) {
+			player.input |= input;
+		} else {
+			player.input &= ~input;
+		}
 	}
 	return SDL_APP_CONTINUE;
 }

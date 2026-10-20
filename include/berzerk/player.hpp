@@ -16,9 +16,14 @@ class Player {
 	// The size of the player.
 	Point size = {BERZERK_PLAYER_W, BERZERK_PLAYER_H};
 
-	// The velocity of the player.
-	Point vel = {};
+	// The inputs of the player, in order up, down, left, right and fire.
+	std::uint8_t input = 0;
 
+  private:
+	// How long until the player can move again.
+	std::uint8_t moveTimer = 0;
+
+  public:
 	// Constructs a new player.
 	Player(const Point& pos);
 

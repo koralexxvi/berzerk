@@ -8,7 +8,23 @@
 Berzerk::Player::Player(const Point& pos) : pos(pos) {}
 
 void Berzerk::Player::tick() {
-	pos += vel;
+	if (moveTimer > 0) {
+		moveTimer--;
+		return;
+	}
+	std::uint8_t y = input & 0b00011;
+	std::uint8_t x = (input >> 2) & 0b00011;
+	if (y == 0b01) {
+		pos.y--;
+	} else if (y == 0b10) {
+		pos.y++;
+	}
+	if (x == 0b01) {
+		pos.x--;
+	} else if (x == 0b10) {
+		pos.x++;
+	}
+	moveTimer = 1;
 }
 
 void Berzerk::Player::draw() const {
