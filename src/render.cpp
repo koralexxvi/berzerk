@@ -36,7 +36,7 @@ SDL_FRect getWallRectAt(std::size_t x, std::size_t y) {
 
 }  // namespace
 
-Berzerk::Point Berzerk::getCameraPos() {
+const Berzerk::Point& Berzerk::getCameraPos() {
 	return cameraPos;
 }
 

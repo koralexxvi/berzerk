@@ -9,7 +9,7 @@
 namespace Berzerk {
 
 // Returns the position of the camera.
-Point getCameraPos();
+const Point& getCameraPos();
 
 // Sets the position of the camera.
 void setCameraPos(const Point& pos);
