@@ -1,6 +1,9 @@
 #include "berzerk/bullet.hpp"
 
+#include "berzerk/defs.hpp"
 #include "berzerk/globals.hpp"
+#include "berzerk/point.hpp"
+#include "berzerk/render.hpp"
 
 #include <SDL3/SDL_render.h>
 
@@ -19,15 +22,22 @@ Berzerk::Bullet::Bullet(
 
 void Berzerk::Bullet::tick() {
 	pos += dir * speed;
+	if (pos.x < 0 || pos.x >= (BERZERK_MAP_X - 1) * BERZERK_WALL_LENGTH_X) {
+		dead = true;
+	}
+	if (pos.y < 0 || pos.y >= (BERZERK_MAP_Y - 1) * BERZERK_WALL_LENGTH_Y) {
+		dead = true;
+	}
 }
 
 void Berzerk::Bullet::draw() const {
+	Point drawPos = pos + getCameraPos();
 	SDL_SetRenderDrawColor(renderer, colour.r, colour.g, colour.b, colour.a);
 	SDL_RenderLine(
 		renderer,
-		static_cast<float>(pos.x),
-		static_cast<float>(pos.y),
-		static_cast<float>(pos.x + dir.x * length),
-		static_cast<float>(pos.y + dir.y * length)
+		static_cast<float>(drawPos.x),
+		static_cast<float>(drawPos.y),
+		static_cast<float>(drawPos.x + dir.x * length),
+		static_cast<float>(drawPos.y + dir.y * length)
 	);
 }

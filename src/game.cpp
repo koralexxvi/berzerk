@@ -21,4 +21,7 @@ void Berzerk::tick() {
 	for (auto&& v : players) {
 		v.tick();
 	}
+	std::erase_if(bullets, [](auto& bullet) -> bool {
+		return bullet.isDead();
+	});
 }
