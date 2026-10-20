@@ -20,4 +20,7 @@ void recenterCamera();
 // Draws the map to the screen.
 void drawWalls();
 
+// Draws all objects to the screen.
+void drawObjects();
+
 }  // namespace Berzerk

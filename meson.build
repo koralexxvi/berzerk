@@ -21,7 +21,7 @@ endif
 sdl3_dep = dependency('sdl3')
 
 incdir = include_directories('include')
-sources = ['src/main.cpp', 'src/game.cpp', 'src/map.cpp', 'src/render.cpp']
+sources = ['src/main.cpp', 'src/game.cpp', 'src/map.cpp', 'src/player.cpp', 'src/render.cpp']
 
 executable(
 	'berzerk',

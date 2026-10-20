@@ -1,6 +1,7 @@
 #include "berzerk/render.hpp"
 
 #include "berzerk/defs.hpp"
+#include "berzerk/game.hpp"
 #include "berzerk/globals.hpp"
 #include "berzerk/map.hpp"
 #include "berzerk/point.hpp"
@@ -63,4 +64,10 @@ void Berzerk::drawWalls() {
 	}
 	SDL_SetRenderDrawColor(Berzerk::renderer, 0, 0, 255, 255);
 	SDL_RenderFillRects(renderer, rects.data(), rects.size());
+}
+
+void Berzerk::drawObjects() {
+	for (const auto& v : players) {
+		v.draw();
+	}
 }

@@ -78,6 +78,7 @@ SDL_AppResult SDL_AppIterate(void*) {
 	SDL_SetRenderDrawColor(Berzerk::renderer, 0, 0, 0, 255);
 	SDL_RenderClear(Berzerk::renderer);
 	Berzerk::drawWalls();
+	Berzerk::drawObjects();
 	SDL_RenderPresent(Berzerk::renderer);
 	return SDL_APP_CONTINUE;
 }
