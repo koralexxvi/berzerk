@@ -49,7 +49,7 @@ void Berzerk::Player::tick() {
 			// north
 			case 0b10001: shootOffset = {6, 0}; break;
 			// north east
-			case 0b11001: shootOffset = {6, 2}; break;
+			case 0b11001: shootOffset = {6, 4}; break;
 			// east
 			case 0b11000: shootOffset = {8, 4}; break;
 			// south east
@@ -57,7 +57,7 @@ void Berzerk::Player::tick() {
 			// south
 			case 0b10010: shootOffset = {6, 8}; break;
 			// south west
-			case 0b10110: shootOffset = {2, 4}; break;
+			case 0b10110: shootOffset = {2, 6}; break;
 			// west
 			case 0b10100: shootOffset = {0, 4}; break;
 			// north west
