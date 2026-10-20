@@ -5,6 +5,7 @@
 #include "berzerk/globals.hpp"
 #include "berzerk/point.hpp"
 
+#include <SDL3/SDL_log.h>
 #include <SDL3/SDL_render.h>
 #include <stdexcept>
 
@@ -29,9 +30,22 @@ void Berzerk::Player::tick() {
 		dir.x = 1;
 	}
 
-	if (input & 0b10000 && input & 0b01111) {
+	if ((input & 0b10000) && input != 0b10000) {
 		Point shootOffset;
-		switch (input) {
+		std::uint8_t shootInput = input;
+		// up+down?
+		if (shootInput & 0b00011) {
+			shootInput ^= 0b00011;
+		}
+		// left+right?
+		if (shootInput & 0b01100) {
+			shootInput ^= 0b01100;
+		}
+		// no inputs left?
+		if (shootInput == 0b10000) {
+			return;
+		}
+		switch (shootInput) {
 			// north
 			case 0b10001: shootOffset = {6, 0}; break;
 			// north east
