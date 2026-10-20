@@ -1,5 +1,7 @@
 #pragma once
 
+#include "berzerk/point.hpp"
+
 #include <cstdint>
 
 namespace Berzerk {
@@ -22,6 +24,12 @@ struct Rect {
 // Returns true if value is both greater or equal to min and less than or equal to max.
 template<typename T> constexpr bool valueInRange(T value, T min, T max) noexcept {
 	return value >= min && value <= max;
+}
+
+// Returns true if the given rect and point intersect.
+constexpr bool rectIntersectsPoint(const Rect& rect, const Point& point) noexcept {
+	return valueInRange(point.x, rect.x, rect.x + rect.w)
+		&& valueInRange(point.y, rect.y, rect.y + rect.h);
 }
 
 // Returns true if the two rects intersect.
