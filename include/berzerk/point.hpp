@@ -1,22 +1,22 @@
 #pragma once
 
-#include <cstddef>
+#include <cstdint>
 
 namespace Berzerk {
 
 // A point composed of two integral components.
 struct Point {
 	// The X component of this point.
-	std::size_t x;
+	std::int32_t x;
 
 	// The Y component of this point.
-	std::size_t y;
+	std::int32_t y;
 
 	// Constructs a vector with an X and Y value of 0.
 	constexpr Point() noexcept : x(0), y(0) {}
 
 	// Constructs a vector with the provided components.
-	constexpr Point(std::size_t x, std::size_t y) noexcept : x(x), y(y) {}
+	constexpr Point(std::int32_t x, std::int32_t y) noexcept : x(x), y(y) {}
 
 	// Returns this point.
 	constexpr Point operator+() const noexcept {
@@ -44,7 +44,7 @@ struct Point {
 	}
 
 	// Multiplies the components of this point by a scalar.
-	constexpr Point operator*(std::size_t scale) const noexcept {
+	constexpr Point operator*(std::int32_t scale) const noexcept {
 		return {x * scale, y * scale};
 	}
 
@@ -54,7 +54,7 @@ struct Point {
 	}
 
 	// Divides the components of this point by a scalar.
-	constexpr Point operator/(std::size_t scale) const noexcept {
+	constexpr Point operator/(std::int32_t scale) const noexcept {
 		return {x / scale, y / scale};
 	}
 
@@ -74,7 +74,7 @@ struct Point {
 	}
 
 	// Returns this point shifted left by scale bits.
-	constexpr Point operator<<(std::size_t scale) const noexcept {
+	constexpr Point operator<<(std::int32_t scale) const noexcept {
 		return {x << scale, y << scale};
 	}
 
@@ -84,7 +84,7 @@ struct Point {
 	}
 
 	// Returns this point shifted right by scale bits.
-	constexpr Point operator>>(std::size_t scale) const noexcept {
+	constexpr Point operator>>(std::int32_t scale) const noexcept {
 		return {x >> scale, y >> scale};
 	}
 
@@ -108,7 +108,7 @@ struct Point {
 	}
 
 	// Multiplies the components of this point by a scalar.
-	constexpr Point operator*=(std::size_t scale) noexcept {
+	constexpr Point operator*=(std::int32_t scale) noexcept {
 		x *= scale;
 		y *= scale;
 		return *this;
@@ -122,7 +122,7 @@ struct Point {
 	}
 
 	// Divides the components of this point by a scalar.
-	constexpr Point operator/=(std::size_t scale) noexcept {
+	constexpr Point operator/=(std::int32_t scale) noexcept {
 		x /= scale;
 		y /= scale;
 		return *this;
@@ -150,7 +150,7 @@ struct Point {
 	}
 
 	// Performs a left shift on the components of this point with a scalar.
-	constexpr Point operator<<=(std::size_t scale) noexcept {
+	constexpr Point operator<<=(std::int32_t scale) noexcept {
 		x <<= scale;
 		y <<= scale;
 		return *this;
@@ -164,7 +164,7 @@ struct Point {
 	}
 
 	// Performs a right shift on the components of this point with a scalar.
-	constexpr Point operator>>=(std::size_t scale) noexcept {
+	constexpr Point operator>>=(std::int32_t scale) noexcept {
 		x >>= scale;
 		y >>= scale;
 		return *this;
