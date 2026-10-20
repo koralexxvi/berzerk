@@ -24,6 +24,7 @@ incdir = include_directories('include')
 sources = [
 	'src/main.cpp',
 	'src/bullet.cpp',
+	'src/enemy.cpp',
 	'src/game.cpp',
 	'src/map.cpp',
 	'src/player.cpp',
