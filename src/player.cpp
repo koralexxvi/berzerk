@@ -6,11 +6,11 @@
 #include "berzerk/point.hpp"
 #include "berzerk/render.hpp"
 
-#include <SDL3/SDL_log.h>
 #include <SDL3/SDL_render.h>
 #include <stdexcept>
 
-Berzerk::Player::Player(const Point& pos) : pos(pos) {}
+Berzerk::Player::Player(const Point& pos)
+	: hitbox({pos.x, pos.y, BERZERK_PLAYER_W, BERZERK_PLAYER_H}) {}
 
 void Berzerk::Player::tick() {
 	if (moveTimer > 0) {
@@ -67,7 +67,7 @@ void Berzerk::Player::tick() {
 		}
 		moveTimer = BERZERK_PLAYER_SHOOT_DELAY;
 		bullets.push_back(Bullet(
-			pos + shootOffset,
+			{hitbox.x + shootOffset.x, hitbox.y + shootOffset.y},
 			dir,
 			{255, 64, 64, 255},
 			BERZERK_BULLET_LENGTH_PLAYER,
@@ -76,18 +76,19 @@ void Berzerk::Player::tick() {
 		return;
 	}
 
-	pos += dir;
+	hitbox.x += dir.x;
+	hitbox.y += dir.y;
 	moveTimer = 1;
 }
 
 void Berzerk::Player::draw() const {
-	Point drawPos = pos + getCameraPos();
+	const Point& camPos = getCameraPos();
 	SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
 	SDL_FRect drawRect = {
-		static_cast<float>(drawPos.x),
-		static_cast<float>(drawPos.y),
-		static_cast<float>(size.x),
-		static_cast<float>(size.y)
+		static_cast<float>(hitbox.x + camPos.x),
+		static_cast<float>(hitbox.y + camPos.y),
+		static_cast<float>(hitbox.w),
+		static_cast<float>(hitbox.h)
 	};
 	SDL_RenderFillRect(renderer, &drawRect);
 }
