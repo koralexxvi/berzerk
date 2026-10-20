@@ -3,6 +3,7 @@
 #include "berzerk/defs.hpp"
 #include "berzerk/globals.hpp"
 #include "berzerk/map.hpp"
+#include "berzerk/point.hpp"
 
 #include <SDL3/SDL_rect.h>
 #include <SDL3/SDL_render.h>
@@ -10,16 +11,9 @@
 
 namespace {
 
-SDL_FRect getWallRectAt(std::size_t x, std::size_t y) {
-	// clang-format off
-	constexpr float offsetX = (RENDER_WIDTH - (BERZERK_MAP_X * BERZERK_WALL_LENGTH_X)
-		+ (BERZERK_WALL_LENGTH_X - BERZERK_WALL_THICKNESS))
-		* 0.5f;
-	constexpr float offsetY = (RENDER_HEIGHT - (BERZERK_MAP_Y * BERZERK_WALL_LENGTH_Y)
-		+ (BERZERK_WALL_LENGTH_Y - BERZERK_WALL_THICKNESS))
-		* 0.5f;
-	// clang-format on
+Berzerk::Point cameraPos;
 
+SDL_FRect getWallRectAt(std::size_t x, std::size_t y) {
 	Berzerk::Direction direction = Berzerk::map[y][x];
 	float rx = (static_cast<float>(x) * BERZERK_WALL_LENGTH_X);
 	float ry = (static_cast<float>(y) * BERZERK_WALL_LENGTH_Y);
@@ -36,10 +30,30 @@ SDL_FRect getWallRectAt(std::size_t x, std::size_t y) {
 	} else if (direction == Berzerk::Direction::WEST) {
 		rx -= rw - BERZERK_WALL_THICKNESS;
 	}
-	return {rx + offsetX, ry + offsetY, rw, rh};
+	return {rx + cameraPos.x, ry + cameraPos.y, rw, rh};
 }
 
 }  // namespace
+
+Berzerk::Point Berzerk::getCameraPos() {
+	return cameraPos;
+}
+
+void Berzerk::setCameraPos(const Point& pos) {
+	cameraPos = pos;
+}
+
+void Berzerk::recenterCamera() {
+	// clang-format off
+	constexpr std::size_t offsetX = (RENDER_WIDTH - (BERZERK_MAP_X * BERZERK_WALL_LENGTH_X)
+		+ (BERZERK_WALL_LENGTH_X - BERZERK_WALL_THICKNESS))
+		/ 2;
+	constexpr std::size_t offsetY = (RENDER_HEIGHT - (BERZERK_MAP_Y * BERZERK_WALL_LENGTH_Y)
+		+ (BERZERK_WALL_LENGTH_Y - BERZERK_WALL_THICKNESS))
+		/ 2;
+	// clang-format on
+	cameraPos = {offsetX, offsetY};
+}
 
 void Berzerk::drawWalls() {
 	std::size_t index = 0;

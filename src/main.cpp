@@ -46,6 +46,7 @@ SDL_AppResult SDL_AppInit(void**, int, char*[]) {
 		}
 	}
 	Berzerk::initMap();
+	Berzerk::recenterCamera();
 	return SDL_APP_CONTINUE;
 }
 
