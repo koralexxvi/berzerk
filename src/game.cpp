@@ -15,10 +15,10 @@ void Berzerk::initGame() {
 }
 
 void Berzerk::tick() {
-	for (auto&& v : players) {
+	for (auto&& v : bullets) {
 		v.tick();
 	}
-	for (auto&& v : bullets) {
+	for (auto&& v : players) {
 		v.tick();
 	}
 }
