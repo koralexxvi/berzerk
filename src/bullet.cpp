@@ -2,6 +2,7 @@
 
 #include "berzerk/defs.hpp"
 #include "berzerk/globals.hpp"
+#include "berzerk/math.hpp"
 #include "berzerk/point.hpp"
 #include "berzerk/render.hpp"
 
@@ -34,12 +35,23 @@ void Berzerk::Bullet::tick() {
 
 void Berzerk::Bullet::draw() const {
 	Point drawPos = pos + getCameraPos();
-	std::vector<SDL_FPoint> points;
-	points.reserve(length);
-	for (std::uint8_t i = 0; i < length; i++) {
-		Point p = drawPos + dir * i;
-		points.push_back({static_cast<float>(p.x), static_cast<float>(p.y)});
-	}
 	SDL_SetRenderDrawColor(renderer, colour.r, colour.g, colour.b, colour.a);
-	SDL_RenderPoints(renderer, points.data(), length);
+	if (drawPos.x == 0 || drawPos.y == 0) {
+		Rect rect = getLineBoundingBox(drawPos, drawPos + (dir * length));
+		SDL_FRect frect = {
+			static_cast<float>(rect.x),
+			static_cast<float>(rect.y),
+			static_cast<float>(rect.w),
+			static_cast<float>(rect.h)
+		};
+		SDL_RenderFillRect(renderer, &frect);
+	} else {
+		std::vector<SDL_FPoint> points;
+		points.reserve(length);
+		for (std::uint8_t i = 0; i < length; i++) {
+			Point p = drawPos + dir * i;
+			points.push_back({static_cast<float>(p.x), static_cast<float>(p.y)});
+		}
+		SDL_RenderPoints(renderer, points.data(), length);
+	}
 }
